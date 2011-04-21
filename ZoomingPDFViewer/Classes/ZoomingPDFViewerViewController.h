@@ -45,18 +45,24 @@
 
 
 #import <UIKit/UIKit.h>
-
-@class TiledPDFView;
+#import "PDFScrollView.h"
+#import "BookPdfScrollView.h"
 
 @interface ZoomingPDFViewerViewController : UIViewController <UIScrollViewDelegate> 
 {
 	NSInteger pageNumber;
-	CGPDFDocumentRef pdf;
+	BookPdfScrollView* psdBookScrollView;
+	UIButton* addPdfPage; // test button to change pdf page
+	UIButton* prevPage; // test button to change pdf page
+	//PdfFileCoreWrapper* padfBook;
+	
 }
 
 @property (nonatomic, retain) IBOutlet UIButton* addPdfPage; // test button to change pdf page
+@property (nonatomic, retain) IBOutlet UIButton* prevPage; // test button to change pdf page
 
 - (IBAction)addPdfPageButton:(id)sender;
+- (IBAction)prevPdfPageButton:(id)sender;
 
 @end
 

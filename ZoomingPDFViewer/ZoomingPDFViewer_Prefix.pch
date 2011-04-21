@@ -44,9 +44,28 @@
 //Copyright (C) 2010 Apple Inc. All Rights Reserved.
 //
 
+#import <Availability.h>
 
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iPhone SDK 3.0 and later."
+#endif
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
 #endif
+
+#import "ZoomingPDFViewerAppDelegate.h"
+
+#if !defined( DEBUG_LOG ) && defined( DEBUG )
+#define DEBUG_LOGF( msg, args... )    (NSLog( msg, args ))
+#define DEBUG_LOG( msg )            (NSLog( msg ))
+#define DEBUG_POSITION                NSLog( @"-> %@ - %@", NSStringFromClass( [self class] ), NSStringFromSelector(_cmd) )
+#elif !defined( DEBUG_LOG ) && !defined( DEBUG )
+#define DEBUG_LOGF( msg, args... )
+#define DEBUG_LOG( msg )
+#define DEBUG_POSITION
+#endif
+
+// macros
+#define APP ((ZoomingPDFViewerAppDelegate*)[[UIApplication sharedApplication] delegate])

@@ -49,6 +49,12 @@
 
 @implementation TiledPDFView
 
+// Clean up.
+- (void)dealloc 
+{
+	CGPDFPageRelease(pdfPage);	
+    [super dealloc];
+}
 
 // Create a new TiledPDFView with the desired frame and scale.
 - (id)initWithFrame:(CGRect)frame andScale:(CGFloat)scale{
@@ -81,7 +87,6 @@
     self->pdfPage = CGPDFPageRetain(newPage);
 }
 
-
 -(void)drawRect:(CGRect)r
 {
     // UIView uses the existence of -drawRect: to determine if it should allow its CALayer
@@ -111,13 +116,5 @@
 	CGContextDrawPDFPage(context, pdfPage);
 	CGContextRestoreGState(context);
 }
-
-// Clean up.
-- (void)dealloc {
-	CGPDFPageRelease(pdfPage);
-	
-    [super dealloc];
-}
-
 
 @end

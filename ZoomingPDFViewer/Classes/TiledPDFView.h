@@ -45,8 +45,8 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface TiledPDFView : UIView {
+@interface TiledPDFView : UIView 
+{
 	CGPDFPageRef pdfPage;
 	CGFloat myScale;
 }

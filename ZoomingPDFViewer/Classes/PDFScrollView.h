@@ -44,8 +44,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class TiledPDFView;
+#import "TiledPDFView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PDFScrollView : UIScrollView <UIScrollViewDelegate> {
 	// The TiledPDFView that is currently front most
@@ -57,7 +57,6 @@
 	// renders its content.
 	UIImageView *backgroundImageView;
 
-
 	// current pdf zoom scale
 	CGFloat pdfScale;
 	NSInteger pageNumer; // number of the page to show
@@ -66,8 +65,8 @@
 
 @property (nonatomic, readwrite) NSInteger pageNumer; // number of the page to show
 
-- (id)initWithFrame:(CGRect)frame andWithPageNumber:(NSInteger)pageNumber andPdfFileReference:(CGPDFDocumentRef)pdf;
--(void)openPDfFile:(CGPDFDocumentRef) pdf;
+-(id)initWithFrame:(CGRect)frame andWithPageNumber:(NSInteger)pageNumber andPdfFileReference:(CGPDFDocumentRef)pdf;
+-(void)openPDfFile:(CGPDFDocumentRef)pdf;
 -(void)createPage:(CGRect)pageRect;
 
 @end

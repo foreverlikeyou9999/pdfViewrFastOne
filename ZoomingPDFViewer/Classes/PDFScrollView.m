@@ -44,17 +44,23 @@
 //
 
 #import "PDFScrollView.h"
-#import "TiledPDFView.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation PDFScrollView
 @synthesize pageNumer;
 
-- (id)initWithFrame:(CGRect)frame andWithPageNumber:(NSInteger)pageNumber andPdfFileReference:(CGPDFDocumentRef)pdf
+- (void)dealloc
+{
+	// Clean up
+    [pdfView release];
+	[backgroundImageView release];
+	CGPDFPageRelease(page);
+    [super dealloc];
+}
+
+- (id)initWithFrame:(CGRect)frame andWithPageNumber:(NSInteger)pageNumber andPdfFileReference:(CGPDFDocumentRef)pdf 
 {
     if ((self = [super initWithFrame:frame])) 
 	{
-		
 		// Set up the UIScrollView
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
@@ -64,21 +70,13 @@
 		[self setBackgroundColor:[UIColor grayColor]];
 		self.maximumZoomScale = 5.0;
 		self.minimumZoomScale = .25;
-		self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height - 100);
+		self.frame = frame;
+		if (pageNumber<=0)
+			pageNumber =1;
 		self.pageNumer = pageNumber;
 		[self openPDfFile:pdf];
-		
 	}
     return self;
-}
-
-- (void)dealloc
-{
-	// Clean up
-    [pdfView release];
-	[backgroundImageView release];
-	CGPDFPageRelease(page);
-    [super dealloc];
 }
 
 #pragma mark -
@@ -159,11 +157,8 @@
 }
 
 #pragma mark - Private Methods
-
--(void)openPDfFile:(CGPDFDocumentRef)pdf;
+-(void)openPDfFile:(CGPDFDocumentRef)pdf
 {	
-	if (pageNumer<=0)
-		pageNumer =1;
 	// Get the PDF Page that we will be drawing
 	page = CGPDFDocumentGetPage(pdf, pageNumer);
 	CGPDFPageRetain(page);
@@ -206,7 +201,6 @@
 	[self addSubview:backgroundImageView];
 	[self sendSubviewToBack:backgroundImageView];
 	
-	
 	[self createPage:pageRect];
 
 }
@@ -216,8 +210,9 @@
 	// Create the TiledPDFView based on the size of the PDF page and scale it to fit the view.
 	pdfView = [[TiledPDFView alloc] initWithFrame:pageRect andScale:pdfScale];
 	[pdfView setPage:page];
-	
+
 	[self addSubview:pdfView];
+
 }
 
 

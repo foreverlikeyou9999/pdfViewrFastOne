@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004AA51B1360268E002E774E /* BookPdfScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 004AA51A1360268E002E774E /* BookPdfScrollView.m */; };
+		004AA51F13602BED002E774E /* PdfFileCoreWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 004AA51E13602BED002E774E /* PdfFileCoreWrapper.m */; };
 		00658A35135EDF6500265592 /* dontjustrollthedice.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 00658A34135EDF6500265592 /* dontjustrollthedice.pdf */; };
 		1D3623260D0F684500981E51 /* ZoomingPDFViewerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ZoomingPDFViewerAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -30,10 +32,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		004AA5191360268E002E774E /* BookPdfScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookPdfScrollView.h; sourceTree = "<group>"; };
+		004AA51A1360268E002E774E /* BookPdfScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookPdfScrollView.m; sourceTree = "<group>"; };
+		004AA51D13602BED002E774E /* PdfFileCoreWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfFileCoreWrapper.h; sourceTree = "<group>"; };
+		004AA51E13602BED002E774E /* PdfFileCoreWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfFileCoreWrapper.m; sourceTree = "<group>"; };
 		00658A34135EDF6500265592 /* dontjustrollthedice.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = dontjustrollthedice.pdf; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* ZoomingPDFViewerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomingPDFViewerAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* ZoomingPDFViewerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomingPDFViewerAppDelegate.m; sourceTree = "<group>"; };
+		1D3623240D0F684500981E51 /* ZoomingPDFViewerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZoomingPDFViewerAppDelegate.h; path = Classes/ZoomingPDFViewerAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* ZoomingPDFViewerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZoomingPDFViewerAppDelegate.m; path = Classes/ZoomingPDFViewerAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* ZoomingPDFViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZoomingPDFViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -77,14 +83,16 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* ZoomingPDFViewerAppDelegate.h */,
-				1D3623250D0F684500981E51 /* ZoomingPDFViewerAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* ZoomingPDFViewerViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* ZoomingPDFViewerViewController.m */,
 				AFE29EA012079441003183E7 /* TiledPDFView.h */,
 				AFE29EA112079441003183E7 /* TiledPDFView.m */,
 				AFE29EE212079C5C003183E7 /* PDFScrollView.h */,
 				AFE29EE312079C5C003183E7 /* PDFScrollView.m */,
+				004AA5191360268E002E774E /* BookPdfScrollView.h */,
+				004AA51A1360268E002E774E /* BookPdfScrollView.m */,
+				004AA51D13602BED002E774E /* PdfFileCoreWrapper.h */,
+				004AA51E13602BED002E774E /* PdfFileCoreWrapper.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -112,6 +120,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1D3623240D0F684500981E51 /* ZoomingPDFViewerAppDelegate.h */,
+				1D3623250D0F684500981E51 /* ZoomingPDFViewerAppDelegate.m */,
 				32CA4F630368D1EE00C91783 /* ZoomingPDFViewer_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -224,6 +234,8 @@
 				28D7ACF80DDB3853001CB0EB /* ZoomingPDFViewerViewController.m in Sources */,
 				AFE29EA212079441003183E7 /* TiledPDFView.m in Sources */,
 				AFE29EE412079C5C003183E7 /* PDFScrollView.m in Sources */,
+				004AA51B1360268E002E774E /* BookPdfScrollView.m in Sources */,
+				004AA51F13602BED002E774E /* PdfFileCoreWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

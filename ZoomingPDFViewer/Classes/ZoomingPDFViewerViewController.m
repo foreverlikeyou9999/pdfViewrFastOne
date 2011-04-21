@@ -44,45 +44,57 @@
 //
 
 #import "ZoomingPDFViewerViewController.h"
-#import "PDFScrollView.h"
 
 @implementation ZoomingPDFViewerViewController
 @synthesize addPdfPage;
+@synthesize prevPage;
 
 - (void)dealloc 
 {
-	CGPDFDocumentRelease(pdf);
+	[psdBookScrollView release];
 	[addPdfPage release];
+	[prevPage release];
 	[super dealloc];
 }
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+- (void)loadView 
+{
 	[super loadView];
 	
 	// Open the PDF document
-	NSURL *pdfURL = [[NSBundle mainBundle] URLForResource:@"dontjustrollthedice.pdf" withExtension:nil];
-	pdf = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
+	//NSURL *pdfURL = [[NSBundle mainBundle] URLForResource:@"dontjustrollthedice.pdf" withExtension:nil];
+	//pdf = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
+	
+	//padfBook = [[PdfFileCoreWrapper createCGPDFDocumentRefByFileName:@"dontjustrollthedice.pdf"] retain];
 	
 	pageNumber = 1;
 	// Create our PDFScrollView and add it to the view controller.
-	PDFScrollView *sv = [[PDFScrollView alloc] initWithFrame:[[self view] bounds] andWithPageNumber:pageNumber andPdfFileReference:pdf];
+	//PDFScrollView *sv = [[PDFScrollView alloc] initWithFrame:[[self view] bounds] andWithPageNumber:pageNumber andPdfFileReference:padfBook.pdfRef];
 	
-    [[self view] addSubview:sv];
-	[sv release];
+   // [[self view] addSubview:sv];
+	//[sv release];
+	
+	psdBookScrollView = [[BookPdfScrollView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height - 100) createPdfBook:@"dontjustrollthedice.pdf" startFromPage:pageNumber];
+	[self.view addSubview:psdBookScrollView];
+	
 }
 
 #pragma mark IBActions
 
 - (IBAction)addPdfPageButton:(id)sender
 {
-	[self performSelectorInBackground:@selector(backgroundLoad:) withObject:sender];
+	[psdBookScrollView loadPage:++pageNumber];
+}
+
+- (IBAction)prevPdfPageButton:(id)sender
+{
+	[psdBookScrollView loadPage:--pageNumber];
 }
 
 - (void)backgroundLoad:(id)sender
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
 	
 	for (UIView* viewDelete in [self view].subviews)
 	{
@@ -91,15 +103,12 @@
 	}
 	
 	// Create our PDFScrollView and add it to the view controller.
-	PDFScrollView *sv = [[PDFScrollView alloc] initWithFrame:[[self view] bounds] andWithPageNumber:++pageNumber andPdfFileReference:pdf];
+	//PDFScrollView *sv = [[PDFScrollView alloc] initWithFrame:[[self view] bounds] andWithPageNumber:++pageNumber andPdfFileReference:padfBook.pdfRef];
 	
-	[[self view] addSubview:sv];
+	//[[self view] addSubview:sv];
 	
 	// mmmeeemmmooorrryyy
-	[sv release];
-
-	//[self performSelectorOnMainThread:@selector(delayedLoad) withObject:nil waitUntilDone:NO];
-	
+	//[sv release];
 	[pool release];
 }
 
